@@ -1,0 +1,21 @@
+<div class="container">
+    <div class="row">
+        <div class="col-12 col-md-6">
+            <div class="ratio ratio-4x3">
+                {{#if product.image}}
+                <img src="/uploads/{{product.image}}" class="p-4 object-fit-contain" alt="{{product.title}}">
+                {{else}}
+                <img src="/public/images/default-image.jpg" class="p-4 object-fit-contain" alt="{{product.title}}">
+                {{/if}}
+            </div>
+        </div>
+        <div class="col-12 col-md-6">
+            <div class="pt-4">
+                <h1 class="fs-3">{{product.title}}</h1>
+                <p class="fs-3">Category: {{product.category.title}}</p>
+                <p class="fs-4">{{product.price}} ֏</p>
+                <p class="fs-5">{{product.description}}</p>
+            </div>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,153 @@
+<div class="container">
+    <h2>Add new order</h2>
+    {{#if error}}
+    <div class="alert alert-danger my-3">
+        {{error}}
+    </div>
+    {{/if}}
+    <form class="row g-3 add-order" method="POST">
+        <div class="col-12 mb-3">
+            <label class="form-label">Address</label>
+            <input type="text" class="form-control" name="address" required>
+        </div>
+        <div class="col-12 mb-3">
+            <label class="form-label">Phone</label>
+            <input type="text" class="form-control" name="phone" required>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Products</label>
+            <select class="form-control js-example-basic-multiple" name="products" multiple="multiple">
+                {{#each products}}
+                <option  data-title="{{this.title}}" data-price="{{this.price}}" value="{{this.id}}">{{this.title}}</option>
+                {{/each}}
+            </select>
+        </div>
+        <div class="col-12 mt-2">
+            <button type="button" class="btn btn-secondary" id="addSelectedProducts">Add products</button>
+        </div>
+
+        <div class="col-12 mt-3" id="selectedProductsTable"></div>
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary">Create Order</button>
+        </div>
+    </form>
+</div>
+
+<script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+        $('.js-example-basic-multiple').select2();
+
+
+        const addBtn = document.getElementById('addSelectedProducts');
+        const tableContainer = document.getElementById('selectedProductsTable');
+        const productSelect = document.querySelector('select[name="products"]');
+        const form = document.querySelector('.add-order');
+
+        let selectedProductsMap = new Map();
+        addBtn.addEventListener('click', () => {
+            const selectedOptions = Array.from(productSelect.selectedOptions);
+
+            selectedOptions.forEach(opt => {
+                if (!selectedProductsMap.has(opt.value)) {
+                    console.log(opt.dataset.title, opt.dataset.price);
+                    selectedProductsMap.set(opt.value, { title: opt.text, quantity: 1, price: opt.dataset.price });
+                }
+            });
+
+            renderTable();
+        });
+
+        function renderTable() {
+            if (selectedProductsMap.size === 0) {
+                tableContainer.innerHTML = '';
+                return;
+            }
+
+            let html = `
+                    <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                        <th>Product</th>
+                        <th>Quantity</th>
+                        <th>Action</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                `;
+
+            for (const [id, { title, quantity }] of selectedProductsMap.entries()) {
+                html += `
+                    <tr data-id="${id}">
+                        <td>${title}</td>
+                        <td><input type="number" name="quantity" value="${quantity}" min="1" class="form-control quantity-input" /></td>
+                        <td><button type="button" class="btn btn-danger remove-btn">Remove</button></td>
+                    </tr>
+                    `;
+            }
+
+            html += `</tbody></table>`;
+            tableContainer.innerHTML = html;
+
+            tableContainer.querySelectorAll('.remove-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    const row = e.target.closest('tr');
+                    const id = row.dataset.id;
+                    selectedProductsMap.delete(id);
+                    renderTable();
+                });
+            });
+
+            tableContainer.querySelectorAll('.quantity-input').forEach(input => {
+                input.addEventListener('input', (e) => {
+                    const row = e.target.closest('tr');
+                    const id = row.dataset.id;
+                    selectedProductsMap.get(id).quantity = parseInt(e.target.value || 1);
+                });
+            });
+        }
+
+        form.addEventListener('submit', async  (e)  => {
+            e.preventDefault();
+
+            const formData = new FormData(form);
+            const address = formData.get('address');
+            const phone = formData.get('phone');
+            const products = [];
+            for (const [id, { quantity, title,price }] of selectedProductsMap.entries()) {
+                products.push({ productId: id, quantity, title, price });
+            }
+
+            if (products.length === 0) {
+                alert('Please add at least one product to the order.');
+                return;
+            }
+
+            console.log({
+                address,
+                phone,
+                products
+            });
+
+ const response = await fetch('/admin/order/create', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                },
+                body: JSON.stringify({
+                    address,
+                    phone,
+                    products
+                })
+            })
+ const result = await response.json();
+        console.log(result);
+        if (result) {
+            alert('Order created successfully!');
+            window.location.href = '/admin/order';
+        } else {
+            alert('Error creating order: ' + result.error);
+        }
+    });
+});
+
+</script>

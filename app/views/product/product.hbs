@@ -1,0 +1,32 @@
+{{#if notFoundMessage}}
+<p class="fs-3 text-center mt-4">{{notFoundMessage}}</p>
+{{else}}
+<div class="container">
+    <h1 class="text-center my-4">Products</h1>
+    {{> product-filter}}
+    <div class="row">
+        {{#each products}}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 shadow-sm border-light-subtle">
+                <div class="ratio ratio-4x3">
+                    {{#if this.image}}
+                    <img src="/uploads/{{this.image}}" class="p-4 object-fit-contain" alt="{{this.title}}">
+                    {{else}}
+                    <img src="/public/images/default-image.jpg" class="p-4 object-fit-contain" alt="{{this.title}}">
+                    {{/if}}
+                </div>
+                <div class="card-body d-flex flex-column">
+                    <h5 class="card-title fs-6">{{this.title}}</h5>
+                    <p class="card-subtitle mb-2 text-body-secondary">{{this.category.title}}</p>
+                    <div class="card-info flex-fill">
+                        <p class="card-text">{{this.description}}</p>
+                    </div>
+                    <p class="card-text  fw-bold">Price: {{this.price}} ֏</p>
+                    <a href="/products/{{this.id}}" class="btn btn-primary">Add to cart</a>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+</div>
+{{/if}}

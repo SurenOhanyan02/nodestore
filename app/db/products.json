@@ -1,0 +1,98 @@
+[
+	{
+		"id": 1,
+		"category_id": 1,
+		"price": 679000,
+		"name": "IPhone 16 Pro 1Tb",
+		"description": "6.3 դյույմ / 8 ԳԲ RAM / 512 ԳԲ ROM / Հիմն. տ-խցիկ - 48MP+12MP+48MP / Դիմ.",
+		"image": "https://notebookcentre.am/wa-data/public/shop/products/79/87/8779/images/18318/18318.200.jpg"
+	},
+	{
+		"id": 2,
+		"category_id": 1,
+		"price": 345000,
+		"name": "Samsung Galaxy S24 Ultra 256Gb",
+		"description": "6.8 դյույմ / 12 ԳԲ RAM / 256 ԳԲ ROM / Հիմն. տ-խցիկ - 200MP+50MP+10MP+12MP",
+		"image": "https://notebookcentre.am/wa-data/public/shop/products/74/74/7474/images/15237/15237.200.jpg"
+	},
+	{
+		"id": 3,
+		"category_id": 1,
+		"price": 95000,
+		"name": "Xiaomi Poco M6 Pro 512Gb",
+		"description": "6.67 դյույմ / 12 ԳԲ RAM / 512 ԳԲ ROM / Հիմն. տ-խցիկ - 64MP+8MP+2MP / Դիմ. տ-խցիկ - 16MP /",
+		"image": "https://notebookcentre.am/wa-data/public/shop/products/80/73/7380/images/15016/15016.200.jpg"
+	},
+	{
+		"id": 4,
+		"category_id": 1,
+		"price": 36700,
+		"name": "Tecno Spark Go 1 KL4",
+		"description": "6.67 դյույմ / 4 ԳԲ RAM / 64 ԳԲ ROM / Հիմն. տ-խցիկ - 13MP / Դիմ. տ-խցիկ - 8 MP / Android",
+		"image": "https://notebookcentre.am/wa-data/public/shop/products/27/95/9527/images/20118/20118.200.webp"
+	},
+	{
+		"id": 5,
+		"category_id": 2,
+		"price": 299000,
+		"name": "MacBook Air MGN63 (Late 2020) Space Gray",
+		"description": "13.3 դյույմ / 8 ԳԲ RAM / 256 ԳԲ SSD / Apple M1 GPU / MacOS",
+		"image": "https://notebookcentre.am/wa-data/public/shop/products/47/23/2347/images/3344/3344.200.jpeg"
+	},
+	{
+		"id": 6,
+		"category_id": 2,
+		"price": 292000,
+		"name": "MSI Thin A15 B7UCX-249XAE",
+		"description": "15.6 դյույմ / Ryzen 5 7535HS / 16 ԳԲ RAM / 512 ԳԲ SSD / GeForce RTX2050 4Gb / Dos",
+		"image": "https://notebookcentre.am/wa-data/public/shop/products/82/90/9082/images/19036/19036.200.PNG"
+	},
+	{
+		"id": 7,
+		"category_id": 2,
+		"price": 305000,
+		"name": "Samsung Galaxy Book 4 NP750XGK-KS2US",
+		"description": "15.6 դյույմ / Core 7 150U / 16 ԳԲ RAM / 512 ԳԲ SSD / Intel Iris Plus Graphics / Windows 11",
+		"image": "https://notebookcentre.am/wa-data/public/shop/products/17/80/8017/images/17313/17313.200.webp"
+	},
+	{
+		"id": 8,
+		"category_id": 2,
+		"price": 1227000,
+		"name": "Razer Blade 16 RZ09-0483SEJ3-R3U1 MiniLed",
+		"description": "16 դյույմ / Core i9 13950HX / 32 ԳԲ RAM / 1 ՏԲ SSD / Geforce RTX4070 8Gb / Windows",
+		"image": "https://notebookcentre.am/wa-data/public/shop/products/68/81/8168/images/16822/16822.200.PNG"
+	},
+	{
+		"name": "Honor 90 Lite 8/256",
+		"price": "72900",
+		"description": "6.7 դյույմ / 8 ԳԲ RAM / 256 ԳԲ ROM / Հիմն. տ-խցիկ - 100MP+5MP+2MP / Դիմ. տ-խցիկ - 16MP / Android",
+		"image": "https://notebookcentre.am/wa-data/public/shop/products/19/87/8719/images/18148/18148.200@2x.jpg",
+		"category_id": "1",
+		"id": 9
+	},
+	{
+		"name": "Honor 90 8Gb/256Gb",
+		"price": "139900",
+		"description": "6.7 դյույմ / 8 ԳԲ RAM / 256 ԳԲ ROM / Հիմն. տ-խցիկ - 200MP+12MP+2MP / Դիմ. տ-խցիկ - 50MP / Android",
+		"image": "6.7 դյույմ / 8 ԳԲ RAM / 256 ԳԲ ROM / Հիմն. տ-խցիկ - 200MP+12MP+2MP / Դիմ. տ-խցիկ - 50MP / Android",
+		"category_id": "1",
+		"id": 10
+	},
+	{
+		"name": "Phone11111",
+		"price": "214",
+		"description": "sdgfd",
+		"image": "sdfsdfsd.png",
+		"category_id": "2",
+		"id": 11
+	},
+	{
+		"name": "premiumfencing-portal-frontend",
+		"price": "123",
+		"description": "adsa",
+		"image": "sdfsdfsd.png",
+		"category_id": "2",
+		"id": 12
+	}
+]

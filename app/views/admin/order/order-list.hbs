@@ -1,0 +1,159 @@
+<!-- Begin Page Content -->
+<div class="container-fluid">
+    <!-- Page Heading -->
+    <a href="/admin/order/create" class="btn btn-primary mb-4">Add new</a>
+    {{#if success}}
+    <div class="alert {{#if success.status}}alert-success{{else}}alert-danger{{/if}} alert-dismissible fade show"
+        role="alert">
+        {{success.message}}
+        <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+        </button>
+    </div>
+    {{/if}}
+    
+    <!-- AJAX Alert -->
+    <div id="ajaxAlert" style="display: none;"></div>
+
+    <!-- DataTales Example -->
+    <div class="card shadow mb-4">
+        <div class="card-header py-3">
+            <h6 class="m-0 font-weight-bold text-primary">Orders List</h6>
+        </div>
+        <div class="card-body">
+            <div class="table-responsive">
+                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
+                    <thead>
+                        <tr>
+                            <th>ID</th>
+                            <th>Address</th>
+                            <th>User</th>
+                            <th>Phone</th>
+                            <th>Status</th>
+                            <th>Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each orders}}
+                        <tr data-order-id="{{this.id}}">
+                            <td>{{this.id}}</td>
+                            <td>{{this.address}}</td>
+                            <td>{{this.user.first_name}} {{this.user.last_name}}</td>
+                            <td>{{this.phone}}</td>
+                            <td>{{this.status}}</td>
+                            <td>
+                                <a href="/admin/order/update/{{this.id}}" class="btn btn-warning btn-circle btn-sm">
+                                    <i class="fas fa-pen"></i>
+                                </a>
+                                <button class="btn btn-danger btn-circle btn-sm delete-btn" data-order-id="{{this.id}}">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script defer>
+    document.addEventListener('DOMContentLoaded', function () {
+        // DataTable initialization
+        $(document).ready(function () {
+            $('#dataTable').DataTable();
+        });
+
+        // Delete functionality
+        document.addEventListener('click', function(e) {
+            if (e.target.classList.contains('delete-btn') || e.target.closest('.delete-btn')) {
+                e.preventDefault();
+                
+                const button = e.target.classList.contains('delete-btn') ? e.target : e.target.closest('.delete-btn');
+                const orderId = button.getAttribute('data-order-id');
+                
+                // Confirmation dialog
+                if (confirm('Վստա՞հ եք, որ ուզում եք ջնջել այս պատվերը։ Այս գործողությունը հետարկել հնարավор չէ։')) {
+                    deleteOrder(orderId);
+                }
+            }
+        });
+
+        // Delete order function
+        async function deleteOrder(orderId) {
+            try {
+                showLoading(true);
+                
+                const response = await fetch(`/admin/order/delete/${orderId}`, {
+                    method: 'DELETE',
+                    headers: {
+                        'Content-Type': 'application/json'
+                    }
+                });
+
+                if (response.ok) {
+                    // Remove row from table
+                    const row = document.querySelector(`tr[data-order-id="${orderId}"]`);
+                    if (row) {
+                        // Animate row removal
+                        row.style.transition = 'opacity 0.1s ease';
+                        row.style.opacity = '0';
+                        setTimeout(() => {
+                            row.remove();
+                            // Refresh DataTable
+                            $('#dataTable').DataTable().draw();
+                        }, 300);
+                    }
+                    
+                    showAlert('Պատվերը հաջողությամբ ջնջվեց');
+                } else {
+                    const errorData = await response.json().catch(() => ({}));
+                    showAlert('Սխալ՝ ' + (errorData.message || 'Չհաջողվեց ջնջել պատվերը'), );
+                }
+            } catch (error) {
+                console.error('Delete error:', error);
+                showAlert('Ցանցային սխալ տեղի ունեցավ', );
+            } finally {
+                showLoading(false);
+            }
+        }
+
+        // Show alert function
+        function showAlert(message, type) {
+            const alertDiv = document.getElementById('ajaxAlert');
+            alertDiv.className = `alert alert-${type} alert-dismissible fade show`;
+            alertDiv.innerHTML = `
+                ${message}
+                <button type="button" class="close" onclick="hideAlert()" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            `;
+            alertDiv.style.display = 'block';
+            
+            // Auto hide after 5 seconds
+            setTimeout(() => {
+                hideAlert();
+            }, 5000);
+        }
+
+        // Hide alert function
+        window.hideAlert = function() {
+            const alertDiv = document.getElementById('ajaxAlert');
+            alertDiv.style.display = 'none';
+        }
+
+        // Show loading state
+        function showLoading(show) {
+            const deleteButtons = document.querySelectorAll('.delete-btn');
+            deleteButtons.forEach(btn => {
+                btn.disabled = show;
+                if (show) {
+                    btn.innerHTML = '<i class="fas fa-spinner fa-spin"></i>';
+                } else {
+                    btn.innerHTML = '<i class="fas fa-trash"></i>';
+                }
+            });
+        }
+    });
+</script>

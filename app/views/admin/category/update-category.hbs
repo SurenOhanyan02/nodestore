@@ -1,0 +1,18 @@
+<div class="container">
+    <h2>Update category</h2>
+    {{#if error}}
+    <div class="alert alert-danger my-3">
+        {{error}}
+    </div>
+    {{/if}}
+    <form class="row g-3 needs-validation" method="POST" action="http://localhost:4000/admin/category/update">
+        <input type="hidden" name="id" value="{{category.id}}">
+        <div class="col-12">
+            <label class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" value="{{category.title}}" required>
+        </div>
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary">update</button>
+        </div>
+    </form>
+</div>

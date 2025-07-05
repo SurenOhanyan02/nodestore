@@ -1,0 +1,58 @@
+<div class="container">
+    <h2>Update Order</h2>
+    {{#if error}}
+    <div class="alert alert-danger my-3">
+        {{error}}
+    </div>
+    {{/if}}
+    <form class="row g-3 needs-validation" method="POST" action="http://localhost:4000/admin/order/update">
+        <div class="col-12">
+            <div class="bg-white rounded py-4 px-1 shadow-sm">
+                <div class="row m-0">
+                    <input type="hidden" name="id" value="{{order.id}}">
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Address</label>
+                        <input type="text" class="form-control" name="address" value="{{order.address}}" required>
+                    </div>
+                    <div class="col-12 mb-3">
+                        <label class="form-label">Phone</label>
+                        <input type="text" class="form-control" name="phone" value="{{order.phone}}" required>
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">Status</label>
+                        <select class="form-control" name="status" required>
+                            {{#each statuses}}
+                            <option value="{{this}}" {{#if (eq ../order.status this )}}selected{{/if}}>{{this}}</option>
+                            {{/each}}
+                        </select>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-12 mt-3">
+            <div class="table-responsive bg-white p-3 shadow-sm rounded">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">title</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{#each order.items}}
+                        <tr>
+                            <td>{{this.title}}</td>
+                            <td>{{this.priceAtTime}}</td>
+                            <td>{{this.quantity}}</td>
+                        </tr>
+                        {{/each}}
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary">update</button>
+        </div>
+    </form>
+</div>

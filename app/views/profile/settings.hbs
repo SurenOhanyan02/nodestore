@@ -1,0 +1,43 @@
+<div class="container">
+    {{#if error}}
+    <div class="alert alert-danger my-3">
+        {{error}}
+    </div>
+    {{/if}}
+    <div class="row mt-4 p-4 shadow rounded">
+        <div class="col-4">
+            <div class="list-group">
+                <a href="/profile" class="list-group-item list-group-item-action" aria-current="true">
+                    Profile
+                </a>
+                <a href="/profile/orders" class="list-group-item list-group-item-action">Orders</a>
+                <a href="/profile/settings" class="list-group-item list-group-item-action active">Settings</a>
+                <a href="/logout" class="list-group-item list-group-item-action">Logout</a>
+            </div>
+        </div>
+        <div class="col-8">
+            <form method="post" action="http://localhost:4000/profile/settings">
+                <input type="hidden" value="{{currentUser.id}}" name="id">
+                <div class="mb-3">
+                    <label for="first_name" class="form-label">First name</label>
+                    <input type="text" class="form-control" id="first_name" value="{{currentUser.first_name}}"
+                        name="first_name">
+                </div>
+                <div class="mb-3">
+                    <label for="last_name" class="form-label">Last name</label>
+                    <input type="text" class="form-control" id="last_name" value="{{currentUser.last_name}}"
+                        name="last_name">
+                </div>
+                <div class="mb-3">
+                    <label for="email" class="form-label">Email</label>
+                    <input type="email" class="form-control" value="{{currentUser.email}}" id="email" name="email">
+                </div>
+                <div class="mb-3">
+                    <label for="password" class="form-label">Password</label>
+                    <input type="password" class="form-control" id="password" name="password">
+                </div>
+                <button type="submit" class="btn btn-primary">Save</button>
+            </form>
+        </div>
+    </div>
+</div>

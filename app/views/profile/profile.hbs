@@ -1,0 +1,18 @@
+<div class="container">
+    <div class="row mt-4 p-4 shadow rounded">
+        <div class="col-4">
+            <div class="list-group">
+                <a href="/profile" class="list-group-item list-group-item-action active" aria-current="true">
+                    Profile
+                </a>
+                <a href="/profile/orders" class="list-group-item list-group-item-action">Orders</a>
+                <a href="/profile/settings" class="list-group-item list-group-item-action">Settings</a>
+                <a href="/logout" class="list-group-item list-group-item-action">Logout</a>
+            </div>
+        </div>
+        <div class="col-8">
+            <p class="fs-5">{{currentUser.first_name}} {{currentUser.last_name}}</p>
+            <p class="fs-5">Email: {{currentUser.email}}</p>
+        </div>
+    </div>
+</div>

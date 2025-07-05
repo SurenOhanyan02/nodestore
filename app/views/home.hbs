@@ -1,0 +1,59 @@
+<div class="container mb-4">
+    <div id="carouselExampleIndicators" class="carousel slide">
+        <div class="carousel-indicators">
+            {{#each slider}}
+            <button type="button" data-bs-target="#carouselExampleIndicators" data-bs-slide-to="{{@index}}"
+                class="{{#unless @index}}active{{/unless}}"></button>
+            {{/each}}
+        </div>
+        <div class="carousel-inner">
+            {{#each slider}}
+            <div class="carousel-item ratio ratio-21x9 {{#unless @index}}active{{/unless}}">
+                <img src="{{../uploadsPath}}{{this.image}}" class="d-block w-100 object-fit-cover" alt="...">
+            </div>
+            {{/each}}
+        </div>
+        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="prev">
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+        </button>
+        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleIndicators"
+            data-bs-slide="next">
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+        </button>
+    </div>
+</div>
+<div class="container">
+    {{#each categories}}
+    <h2 class="mb-4">{{this.title}}</h2>
+    <div class="row">
+        {{#each this.products}}
+        <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+            <div class="card h-100 shadow-sm border-light-subtle">
+                <a href="/products/{{this.id}}">
+                    <div class="ratio ratio-4x3">
+                        {{#if this.image}}
+                        <img src="/uploads/{{this.image}}" class="p-4 object-fit-contain" alt="{{this.title}}">
+                        {{else}}
+                        <img src="/public/images/default-image.jpg" class="p-4 object-fit-contain" alt="{{this.title}}">
+                        {{/if}}
+                    </div>
+                </a>
+                <div class="card-body d-flex flex-column">
+                    <a href="/products/{{this.id}}" class="text-decoration-none">
+                        <h5 class="card-title fs-6">{{this.title}}</h5>
+                    </a>
+                    <div class="card-info flex-fill">
+                        <p class="card-text">{{this.description}}</p>
+                    </div>
+                    <p class="card-text fw-bold">Price: {{this.price}} ֏</p>
+                    <button class="btn btn-primary add-to-cart" data-product-id="{{this.id}}">Add to cart</button>
+                </div>
+            </div>
+        </div>
+        {{/each}}
+    </div>
+    {{/each}}
+</div>

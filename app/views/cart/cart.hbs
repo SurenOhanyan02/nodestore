@@ -1,0 +1,53 @@
+<div class="container-lg">
+    <div class="shadow-sm p-3 mt-4 rounded border border-light-subtle">
+        {{#if cart}}
+        <div class="table-responsive-lg">
+            <table class="table table-hover cart-table ">
+                <thead>
+                    <tr>
+                        <th scope="col">Image</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">Price</th>
+                        <th scope="col">Quantity</th>
+                        <th scope="col">Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {{#each cart}}
+                    <tr>
+                        <th width="80px">
+                            <img src="/uploads/{{this.image}}" width="50" height="50">
+                        </th>
+                        <td class="align-middle title">{{this.title}}</td>
+                        <td class="align-middle price">{{this.price}} ֏</td>
+                        <td class="align-middle quantity">
+                            <div class="input-group product-quantity flex-nowrap" data-id="{{this.id}}">
+                                <button class="btn btn-outline-secondary decrement" type="button"
+                                    id="button-addon1">-</button>
+                                <input type="number" class="form-control text-center quantity-input" placeholder=""
+                                    value="{{this.quantity}}" aria-label="Example text with button addon"
+                                    aria-describedby="button-addon1" min="1">
+                                <button class="btn btn-outline-secondary increment" type="button"
+                                    id="button-addon1">+</button>
+                            </div>
+                        </td>
+                        <td class="align-middle text-end">
+                            <button class="btn btn-danger delete-cart-item"
+                                data-product-id="{{this.id}}">Delete</button>
+                        </td>
+                    </tr>
+                    {{/each}}
+                </tbody>
+            </table>
+        </div>
+        {{#if totalPrice}}
+        <div class="d-flex justify-content-between align-items-center px-1">
+            <span><b>Total:</b> {{totalPrice}} ֏</span>
+            <a class="btn btn-primary" href="/checkout">Checkout</a>
+        </div>
+        {{/if}}
+        {{else}}
+        <p class="text-center fs-5 mt-3">Cart is empty</p>
+        {{/if}}
+    </div>
+</div>

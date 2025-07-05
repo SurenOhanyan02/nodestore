@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    {{> admin/header}}
+</head>
+
+<body id="page-top">
+
+    <!-- Page Wrapper -->
+    <div id="wrapper">
+        {{> admin/sidebar}}
+        <!-- Content Wrapper -->
+        <div id="content-wrapper" class="d-flex flex-column">
+
+            <!-- Main Content -->
+            <div id="content">
+                {{> admin/navbar}}
+                {{{body}}}
+            </div>
+        </div>
+    </div>
+    <footer>
+        {{> admin/footer}}
+    </footer>
+</body>
+
+</html>

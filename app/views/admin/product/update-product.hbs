@@ -1,0 +1,59 @@
+<div class="container">
+    <h2>Update product</h2>
+    {{#if error}}
+    <div class="alert alert-danger my-3">
+        {{error}}
+    </div>
+    {{/if}}
+    <form class="row g-3 needs-validation" method="POST" action="http://localhost:4000/admin/products/update"
+        enctype="multipart/form-data">
+        <input type="hidden" name="id" value="{{product.id}}">
+        <div class="col-12">
+            <label class="form-label">Product Title</label>
+            <input type="text" class="form-control" name="title" value="{{product.title}}" required>
+            <div class="valid-feedback">
+                Product title is required
+            </div>
+        </div>
+        <div class="col-12">
+            <div class="custom-file mb-3 mt-4">
+                <input type="file" class="custom-file-input" id="image" name="image">
+                <label class="custom-file-label" for="image">Select product image</label>
+            </div>
+            {{#if product.image}}
+            <img src="/uploads/{{product.image}}" width="150" class="mb-2">
+            {{else}}
+            <p>No image uploaded</p>
+            {{/if}}
+        </div>
+        <div class="col-12">
+            <label class="form-label">Product price</label>
+            <input type="text" class="form-control" name="price" value="{{product.price}}" required>
+            <div class="valid-feedback">
+                Product price is required
+            </div>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Product description</label>
+            <textarea class="form-control" name="description" rows="5">{{product.description}}</textarea>
+            <div class="valid-feedback">
+                Product description is required
+            </div>
+        </div>
+        <div class="col-12">
+            <label class="form-label">Category</label>
+            <select class="form-control" aria-label="Default select example" name="categoryId" required>
+                {{#each categories}}
+                <option value="{{this.id}}" {{#if (eq ../product.categoryId this.id )}}selected{{/if}}>{{this.title}}
+                </option>
+                {{/each}}
+            </select>
+            <div class="valid-feedback">
+                Category is required
+            </div>
+        </div>
+        <div class="col-12 mt-3">
+            <button type="submit" class="btn btn-primary">update</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,32 @@
+{
+	"name": "lesson5",
+	"version": "1.0.0",
+	"main": "server.js",
+	"scripts": {
+		"dev": "nodemon --require dotenv/config server.js",
+		"build:css": "sass public/css/bootstrap.scss public/css/bootstrap.css"
+	},
+	"keywords": [],
+	"author": "",
+	"license": "ISC",
+	"description": "",
+	"type": "module",
+	"devDependencies": {
+		"dotenv": "^16.4.7",
+		"nodemon": "^3.1.9",
+		"prisma": "^6.6.0"
+	},
+	"dependencies": {
+		"@prisma/client": "^6.6.0",
+		"bcrypt": "^5.1.1",
+		"bootstrap": "^5.3.6",
+		"cookie-parser": "^1.4.7",
+		"express": "^4.21.2",
+		"express-handlebars": "^8.0.1",
+		"express-session": "^1.18.1",
+		"joi": "^17.13.3",
+		"multer": "^1.4.5-lts.2",
+		"sass": "^1.89.0",
+		"uuid": "^11.1.0"
+	}
+}

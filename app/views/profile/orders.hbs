@@ -1,0 +1,38 @@
+<div class="container">
+    <div class="row mt-4 p-4 shadow rounded">
+        <div class="col-4">
+            <div class="list-group">
+                <a href="/profile" class="list-group-item list-group-item-action" aria-current="true">
+                    Profile
+                </a>
+                <a href="/profile/orders" class="list-group-item list-group-item-action active">Orders</a>
+                <a href="/profile/settings" class="list-group-item list-group-item-action">Settings</a>
+                <a href="/logout" class="list-group-item list-group-item-action">Logout</a>
+            </div>
+        </div>
+        <div class="col-8">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Date</th>
+                        <th scope="col">Status</th>
+                        <th scope="col">Address</th>
+                        <th scope="col">Total</th>
+                        <th scope="col">Details</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td scope="row">1</td>
+                        <td>01/01/2025</td>
+                        <td class="text-success">Complete</td>
+                        <td>Yerevan, Malatia 85</td>
+                        <td>20000</td>
+                        <td><a class="text-decoration-none" href="/profile/orders/1">View</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
